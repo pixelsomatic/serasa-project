@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "serasa",
+    "host": "postgres",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "your_postgres_username",
+    "password": "your_postgres_password",
+    "database": "your_test_database_name",
+    "host": "postgres",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "your_postgres_username",
+    "password": "your_postgres_password",
+    "database": "your_production_database_name",
+    "host": "your_production_host",
+    "dialect": "postgres"
+  }
+}
