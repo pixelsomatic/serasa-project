@@ -1,0 +1,30 @@
+import express, { Application } from "express";
+import { Sequelize } from "sequelize";
+import ruralProducersRoutes from "./routes/ruralProducers";
+import { initRuralProducer } from "./models/ruralProducerModel";
+import configJson from "./config/config.json";
+import { Config } from "./interface/config";
+
+const config: Config = configJson;
+const app: Application = express();
+const env: keyof Config = (process.env.NODE_ENV ||
+  "development") as keyof Config;
+
+const dbConfig = config[env];
+
+let sequelize;
+sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
+  dbConfig
+);
+
+initRuralProducer(sequelize);
+
+app.use(express.json());
+app.use("/rural-producers", ruralProducersRoutes);
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
