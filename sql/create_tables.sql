@@ -9,7 +9,6 @@ CREATE TABLE "RuralProducers" (
   "totalArea" DOUBLE PRECISION NOT NULL,
   "arableArea" DOUBLE PRECISION NOT NULL,
   "vegetationArea" DOUBLE PRECISION NOT NULL,
-  "cropsPlanted" DOUBLE PRECISION NOT NULL,
   "createdAt" TIMESTAMP NOT NULL,
   "updatedAt" TIMESTAMP NOT NULL
 );

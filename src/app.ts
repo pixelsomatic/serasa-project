@@ -1,7 +1,8 @@
 import express, { Application } from "express";
 import { Sequelize } from "sequelize";
 import ruralProducersRoutes from "./routes/ruralProducers";
-import { initRuralProducer } from "./models/ruralProducerModel";
+import RuralProducer, { initRuralProducer } from "./models/ruralProducerModel";
+import Crop, { initCrop } from "./models/cropModel";
 import { Config } from "./interface/config";
 import configJson from "./config/config";
 import path from "path";
@@ -23,6 +24,14 @@ sequelize = new Sequelize(
 );
 
 initRuralProducer(sequelize);
+initCrop(sequelize);
+
+// Associate the models
+RuralProducer.associate({ Crop });
+Crop.associate({ RuralProducer });
+
+// Sync the models with the database
+sequelize.sync();
 
 app.use(express.json());
 app.use("/rural-producers", ruralProducersRoutes);

@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-
+import Crop from "./cropModel";
 interface RuralProducerAttributes {
   id?: number;
   producerName: string;
@@ -11,7 +11,6 @@ interface RuralProducerAttributes {
   totalArea: number;
   arableArea: number;
   vegetationArea: number;
-  cropsPlanted: number;
 }
 
 interface RuralProducerCreationAttributes extends RuralProducerAttributes {}
@@ -30,7 +29,15 @@ class RuralProducer extends Model<
   public totalArea!: number;
   public arableArea!: number;
   public vegetationArea!: number;
-  public cropsPlanted!: number;
+
+  public readonly crops?: Crop[]; // Define the association with the Crop model
+
+  public static associate(models: any) {
+    RuralProducer.hasMany(models.Crop, {
+      foreignKey: "producerId",
+      as: "crops",
+    });
+  }
 }
 
 export const initRuralProducer = (sequelize: Sequelize): void => {
@@ -66,19 +73,15 @@ export const initRuralProducer = (sequelize: Sequelize): void => {
         allowNull: false,
       },
       totalArea: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       arableArea: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       vegetationArea: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-      },
-      cropsPlanted: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
     },
