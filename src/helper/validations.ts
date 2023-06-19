@@ -9,3 +9,7 @@ export function validateArea(
   }
   return true;
 }
+
+export const determineTaxIdType = (unformattedTaxId: string) => {
+  return unformattedTaxId.length === 11 ? "CPF" : "CNPJ";
+};

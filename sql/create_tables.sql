@@ -3,6 +3,7 @@ CREATE TABLE "RuralProducers" (
   "producerName" VARCHAR NOT NULL,
   "farmName" VARCHAR NOT NULL,
   "taxId" VARCHAR NOT NULL,
+  "taxIdType" VARCHAR NOT NULL,
   "city" VARCHAR NOT NULL,
   "state" VARCHAR NOT NULL,
   "totalArea" DOUBLE PRECISION NOT NULL,

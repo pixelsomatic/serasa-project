@@ -5,6 +5,7 @@ interface RuralProducerAttributes {
   producerName: string;
   farmName: string;
   taxId: string;
+  taxIdType: string;
   city: string;
   state: string;
   totalArea: number;
@@ -23,6 +24,7 @@ class RuralProducer extends Model<
   public producerName!: string;
   public farmName!: string;
   public taxId!: string;
+  public taxIdType!: string;
   public city!: string;
   public state!: string;
   public totalArea!: number;
@@ -49,6 +51,10 @@ export const initRuralProducer = (sequelize: Sequelize): void => {
       },
       taxId: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      taxIdType: {
+        type: DataTypes.ENUM("CPF", "CNPJ"),
         allowNull: false,
       },
       city: {
