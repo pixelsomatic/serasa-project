@@ -2,8 +2,10 @@ import express, { Application } from "express";
 import { Sequelize } from "sequelize";
 import ruralProducersRoutes from "./routes/ruralProducers";
 import { initRuralProducer } from "./models/ruralProducerModel";
-import configJson from "./config/config.json";
 import { Config } from "./interface/config";
+import configJson from "./config/config";
+import path from "path";
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const config: Config = configJson;
 const app: Application = express();

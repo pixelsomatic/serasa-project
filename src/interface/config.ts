@@ -1,20 +1,13 @@
+export interface ConfigEnvironment {
+  username: string;
+  password: string;
+  database: string;
+  host: string;
+  dialect: "postgres";
+}
+
 export interface Config {
-  development: {
-    username: string;
-    password: string;
-    database: string;
-    host: string;
-  };
-  test: {
-    username: string;
-    password: string;
-    database: string;
-    host: string;
-  };
-  production: {
-    username: string;
-    password: string;
-    database: string;
-    host: string;
-  };
+  development: ConfigEnvironment;
+  test: ConfigEnvironment;
+  production: ConfigEnvironment;
 }
