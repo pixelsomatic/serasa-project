@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    links:
+      - db:postgres
+    environment:
+      DATABASE_URL: "postgres://postgres:123456@postgres:5432/serasa"
+
+  db:
+    image: "postgres:13"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "serasa"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+      - "./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql"
+
+volumes:
+  db-data:
