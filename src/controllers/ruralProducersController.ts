@@ -21,6 +21,13 @@ export const create = async (req: Request, res: Response) => {
     }
 
     const unformattedTaxId = taxId.replace(/[^\d]/g, "");
+
+    const existingProducer = await RuralProducer.findOne({ where: { taxId: unformattedTaxId } });
+
+    if (existingProducer) {
+      return res.status(400).json({ error: "Este produtor já existe." });
+    }
+
     const taxIdType = determineTaxIdType(unformattedTaxId);
     req.body.taxId = unformattedTaxId;
     req.body.taxIdType = taxIdType;
