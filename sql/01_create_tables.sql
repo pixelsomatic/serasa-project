@@ -1,4 +1,4 @@
-CREATE TABLE "RuralProducers" (
+CREATE TABLE IF NOT EXISTS "RuralProducers" (
   "id" SERIAL PRIMARY KEY,
   "producerName" VARCHAR NOT NULL,
   "farmName" VARCHAR NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE "RuralProducers" (
   "updatedAt" TIMESTAMP NOT NULL
 );
 
-CREATE TABLE "Crops" (
+CREATE TABLE IF NOT EXISTS "Crops" (
   "id" SERIAL PRIMARY KEY,
   "producerId" INTEGER NOT NULL REFERENCES "RuralProducers"("id") ON DELETE CASCADE,
   "cropName" VARCHAR NOT NULL,

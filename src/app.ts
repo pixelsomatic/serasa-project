@@ -20,7 +20,13 @@ sequelize = new Sequelize(
   dbConfig.database,
   dbConfig.username,
   dbConfig.password,
-  dbConfig
+  {
+    ...dbConfig,
+    retry: {
+      max: 10,
+      timeout: 30000
+    }
+  }
 );
 
 initRuralProducer(sequelize);
