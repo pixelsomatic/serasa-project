@@ -10,7 +10,9 @@ import {
 
 const router = Router();
 
-router.post("/", ruralProducersController.create);
+router.post("/", (req, res) => {
+  ruralProducersController.create(req, res)
+});
 router.get("/", ruralProducersController.readAll);
 router.get("/:id", ruralProducersController.readById);
 router.put("/:id", ruralProducersController.update);

@@ -42,6 +42,4 @@ sequelize.sync();
 app.use(express.json());
 app.use("/rural-producers", ruralProducersRoutes);
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
-});
+export default app;

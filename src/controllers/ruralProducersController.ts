@@ -73,8 +73,8 @@ export const create = async (req: Request, res: Response) => {
 
     res.status(201).json(producerWithCrops);
   } catch (error) {
-    console.log("error while creating producer:", error);
-    res.status(400).json({ message: "Erro ao criar produtor rural", error });
+    console.error("error while creating producer:", error);
+    res.status(500).json({ message: "Erro ao criar produtor rural", error });
   }
 };
 
