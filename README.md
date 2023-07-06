@@ -21,8 +21,41 @@ usuário adicionar, editar e excluir informações a respeito dos produtores e s
 ## Instalação
 
 1. Clone o repositório.
-2. Navege até a pasta do projeto e localize o arquivo `docker-compose.yml`.
-3. Execute `docker-compose up --build` para montar e iniciar os containers.
+2. Navege até a pasta do projeto, localize o arquivo `.env.example`, renomeie para `.env` e adicione as suas credenciais
+3. Execute `docker-compose up app app_db` para montar e iniciar os containers.
+
+<br>
+
+## Cobertura de testes
+
+- Para rodar os testes unitários, execute `docker-compose up test`.
+- Exemplo de cobertura de teste:
+
+```bash
+ RuralProducersController
+    create
+      ✓ should create a new producer and return 201 status (469 ms)
+      ✓ should return 400 if the sum of arable and vegetation areas is greater than the total area (10 ms)
+      ✓ should return 400 if the taxId is invalid (9 ms)
+      ✓ should return 400 if the producer already exists (28 ms)
+      ✓ should return 400 if the crops are invalid (17 ms)
+    GET /rural-producers
+      ✓ should fetch all rural producers (11 ms)
+    GET /rural-producers/:id
+      ✓ should fetch a single rural producer (32 ms)
+      ✓ should return 404 if no producer with the given id exists (27 ms)
+    PUT /rural-producers/:id
+      ✓ should update a rural producer (35 ms)
+      ✓ should return 400 if the sum of arable and vegetation areas is greater than the total area (25 ms)
+      ✓ should return 400 if the taxId is invalid (25 ms)
+      ✓ should return 404 if the producer does not exist (27 ms)
+    DELETE /rural-producers/:id
+      ✓ should delete a rural producer (27 ms)
+      ✓ should return 404 if the producer does not exist (25 ms)
+serasa-test-test-1  |
+Test Suites: 1 passed, 1 total
+Tests:       14 passed, 14 total
+```
 
 <br>
 
